@@ -20,3 +20,16 @@ after_success:
   - docker push zhmakas/multi-nginx
   - docker push zhmakas/multi-server 
   - docker push zhmakas/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: muldti-docker
+  env: MuldtiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-137194036851
+  bucket_path: muldti-docker
+  on: 
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
